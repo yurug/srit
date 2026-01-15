@@ -36,6 +36,24 @@ The pace is stored in a file $HOME/.srit.json
 
 In this file you can configure the colors used by the tool.
 
+## Comprehension Check Mode
+
+Test your reading comprehension with AI-generated questions:
+
+```
+srit --check document.txt
+```
+
+Questions appear at random points during reading. Answer with number keys (1-4). At the end, you'll see your score and total time.
+
+Options:
+- `--questions N` - Number of questions (default: 10)
+- `--frequency N` - Average words between questions
+- `--provider NAME` - LLM provider (openai, anthropic, gemini)
+- `--model NAME` - Specific model to use
+
+Requires an API key in environment: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, or `GEMINI_API_KEY`.
+
 ## Installation
 
 ```
