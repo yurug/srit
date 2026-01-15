@@ -5,6 +5,7 @@ const { SpeedReader } = require('../lib/display.js');
 const { loadConfig, saveConfig } = require('../lib/config.js');
 const { generateQuestions, distributeQuestions } = require('../lib/questions.js');
 const { detectProvider } = require('../lib/llm.js');
+const { version } = require('../package.json');
 
 function parseArgs(args) {
   const options = {
@@ -62,15 +63,23 @@ function printUsage() {
   console.error('  --provider NAME      LLM provider (openai, anthropic, gemini)');
   console.error('  --model NAME         LLM model to use');
   console.error('  --demo               Demo mode (fast, limited words)');
+  console.error('  -v, --version        Show version number');
   console.error('');
   console.error('Supported formats: txt, md, pdf, doc, docx');
   console.error('Use - to read from stdin');
 }
 
 async function main() {
+  const args = process.argv.slice(2);
+
+  if (args.includes('--version') || args.includes('-v')) {
+    console.log(`srit v${version}`);
+    process.exit(0);
+  }
+
   let options;
   try {
-    options = parseArgs(process.argv.slice(2));
+    options = parseArgs(args);
   } catch (err) {
     console.error(`Error: ${err.message}`);
     printUsage();
