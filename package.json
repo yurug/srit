@@ -1,0 +1,28 @@
+{
+  "name": "@yurug-js/srit",
+  "version": "1.0.0",
+  "description": "Speed Read It! - A command line tool to speed read any text",
+  "main": "index.js",
+  "bin": {
+    "srit": "./bin/srit.js"
+  },
+  "scripts": {
+    "start": "node bin/srit.js"
+  },
+  "keywords": [
+    "speed-reading",
+    "cli",
+    "reader",
+    "rsvp"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "mammoth": "^1.6.0",
+    "marked": "^17.0.1",
+    "pdf-parse": "^1.1.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
