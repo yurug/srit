@@ -2,6 +2,8 @@
 
 `srit` is a command line tool to speed read any text.
 
+![demo](demo.gif)
+
 ## Usage
 
 Any of the following commands:
