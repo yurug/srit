@@ -40,6 +40,8 @@ In this file you can configure the colors used by the tool.
 
 Test your reading comprehension with AI-generated questions:
 
+![demo-check](demo-check.gif)
+
 ```
 srit --check document.txt
 ```
