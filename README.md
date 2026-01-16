@@ -5,7 +5,7 @@
 
 A command line tool to speed read any text using RSVP (Rapid Serial Visual Presentation).
 
-![demo](demo.gif)
+![demo](https://raw.githubusercontent.com/yurug/srit/main/demo.gif)
 
 ## Installation
 
@@ -52,7 +52,7 @@ The terminal clears and displays one word at a time, centered on screen. The med
 
 Test your reading comprehension with AI-generated questions:
 
-![demo-check](demo-check.gif)
+![demo-check](https://raw.githubusercontent.com/yurug/srit/main/demo-check.gif)
 
 ```bash
 srit --check document.txt
