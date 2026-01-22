@@ -22,6 +22,7 @@ Requires Node.js 18 or higher.
 - Median letter highlighting for optimal eye fixation
 - Progress bar showing position in text
 - Pipe mode for reading from stdin
+- AI-powered adaptive pacing (slows on complex words)
 - AI-powered comprehension testing
 
 ## Usage
@@ -48,6 +49,26 @@ The terminal clears and displays one word at a time, centered on screen. The med
 | `↓` | Decrease speed |
 | `Esc` | Exit |
 
+## Adaptive Pacing Mode
+
+Let AI adjust your reading speed based on text complexity:
+
+![demo-auto](https://raw.githubusercontent.com/yurug/srit/main/demo-auto.gif)
+
+```bash
+srit --auto document.txt
+```
+
+Uses LLM token surprisal to slow down on complex or unusual words, with a smooth "halo" effect around surprising content. Results are cached for instant re-runs.
+
+| Option | Description |
+|--------|-------------|
+| `--gamma N` | Slowdown intensity (0.0-2.0, default: 0.6) |
+| `--target-wpm N` | Base target WPM (default: 360) |
+| `--max-cost N` | Cost threshold before confirmation (default: $1) |
+
+Controls: `+`/`-` adjust gamma, `↑`/`↓` adjust speed.
+
 ## Comprehension Check Mode
 
 Test your reading comprehension with AI-generated questions:
@@ -60,24 +81,22 @@ srit --check document.txt
 
 Questions appear throughout your reading, placed at sentence boundaries to avoid interrupting the flow. Answer with number keys (1-4). At the end, you'll see your score and total reading time.
 
-### Options
-
 | Option | Description |
 |--------|-------------|
 | `--questions N` | Number of questions (default: 10) |
 | `--frequency N` | Target words between questions |
-| `--provider NAME` | LLM provider: `openai`, `anthropic`, or `gemini` |
-| `--model NAME` | Specific model to use |
 
-### API Keys
+## API Keys
 
-Set one of these environment variables:
+Both `--auto` and `--check` modes require an LLM API key. Set one of:
 
 ```bash
 export OPENAI_API_KEY=sk-...
 export ANTHROPIC_API_KEY=sk-ant-...
 export GEMINI_API_KEY=...
 ```
+
+Additional options: `--provider NAME` and `--model NAME` to override defaults.
 
 ## Configuration
 
