@@ -1,6 +1,6 @@
 {
   "name": "@yurug-js/srit",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Speed Read It! - A command line tool to speed read any text",
   "main": "index.js",
   "bin": {
