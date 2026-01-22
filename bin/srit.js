@@ -100,14 +100,14 @@ function printUsage() {
   console.error('Usage: srit [options] <file|url|->');
   console.error('');
   console.error('Options:');
-  console.error('  --auto               Enable semantic adaptive pacing (requires OpenAI/Gemini)');
+  console.error('  --auto               Enable semantic adaptive pacing (OpenAI/Gemini/Ollama)');
   console.error('  --gamma N            Slowdown intensity for --auto (0.0-2.0, default: 0.6)');
   console.error('  --target-wpm N       Target WPM for --auto mode (default: 360)');
   console.error('  --max-cost N         Max cost in USD before confirmation (default: 1.0)');
   console.error('  --check              Enable comprehension check mode');
   console.error('  --questions N        Number of questions (default: 10)');
   console.error('  --frequency N        Average words between questions');
-  console.error('  --provider NAME      LLM provider (openai, anthropic, gemini)');
+  console.error('  --provider NAME      LLM provider (openai, anthropic, gemini, ollama)');
   console.error('  --model NAME         LLM model to use');
   console.error('  --demo               Demo mode (fast, limited words)');
   console.error('  -v, --version        Show version number');
@@ -143,12 +143,14 @@ async function main() {
     process.exit(1);
   }
 
-  // Check for API key if --check or --auto mode
+  // Check for API key if --check or --auto mode (Ollama doesn't need one)
   if (options.check || options.auto) {
     const detected = detectProvider();
+    const isOllama = options.provider === 'ollama';
+
     if (!detected && !options.provider) {
-      console.error(`Error: --${options.auto ? 'auto' : 'check'} requires an LLM API key.`);
-      console.error('Set OPENAI_API_KEY, ANTHROPIC_API_KEY, or GEMINI_API_KEY environment variable.');
+      console.error(`Error: --${options.auto ? 'auto' : 'check'} requires an LLM provider.`);
+      console.error('Set OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY, or use --provider ollama.');
       process.exit(1);
     }
 
@@ -156,10 +158,17 @@ async function main() {
     if (options.auto) {
       const providerName = options.provider || detected?.provider;
       if (!supportsLogprobs(providerName)) {
-        console.error(`Error: --auto requires a provider with logprobs support (OpenAI or Gemini).`);
+        console.error(`Error: --auto requires a provider with logprobs support (OpenAI, Gemini, or Ollama).`);
         console.error(`Provider '${providerName}' does not support token logprobs.`);
         process.exit(1);
       }
+    }
+
+    // Skip API key check for Ollama
+    if (!isOllama && !detected && options.provider !== 'ollama') {
+      // This is for --check mode with explicit non-ollama provider but no key
+      console.error(`Error: Provider '${options.provider}' requires an API key.`);
+      process.exit(1);
     }
   }
 

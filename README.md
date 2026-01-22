@@ -88,13 +88,20 @@ Questions appear throughout your reading, placed at sentence boundaries to avoid
 
 ## API Keys
 
-Both `--auto` and `--check` modes require an LLM API key. Set one of:
+Both `--auto` and `--check` modes require an LLM provider.
 
+**Cloud providers** (require API key):
 ```bash
 export OPENAI_API_KEY=sk-...
 export ANTHROPIC_API_KEY=sk-ant-...
 export GEMINI_API_KEY=...
 ```
+
+**Local with Ollama** (free, no API key):
+```bash
+srit --auto --provider ollama document.txt
+```
+Requires [Ollama](https://ollama.com) running locally. Set `OLLAMA_HOST` to override the default `http://localhost:11434`.
 
 Additional options: `--provider NAME` and `--model NAME` to override defaults.
 

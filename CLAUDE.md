@@ -46,10 +46,10 @@ test/
 - Question display and scoring (when --check mode enabled)
 
 **LLM Module** (`lib/llm.js`):
-- Multi-provider support: OpenAI, Anthropic, Gemini
+- Multi-provider support: OpenAI, Anthropic, Gemini, Ollama
 - Auto-detects available API key from environment
-- Standard env vars: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`
-- Token logprobs scoring for SAP (OpenAI/Gemini only)
+- Standard env vars: `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`, `OLLAMA_HOST`
+- Token logprobs scoring for SAP (OpenAI, Gemini, Ollama)
 
 **SAP Module** (`lib/sap.js`):
 - Semantic Adaptive Pacing with Neighbor Slowdown (SAP-N3)
