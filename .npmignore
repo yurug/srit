@@ -1,0 +1,16 @@
+# Test files
+*.txt
+*.cast
+
+# Demo GIFs (referenced via GitHub URLs in README)
+*.gif
+
+# Backup files
+*~
+
+# Development files
+.claude/
+.github/
+test/
+eslint.config.js
+CLAUDE.md
