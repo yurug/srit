@@ -88,6 +88,12 @@ srit [options] <file|url|->
 --demo               Demo mode (fast, limited words)
 ```
 
+## Workflow
+
+- Complete each change fully (implementation + tests) before moving to the next.
+- Run `npm test` and `npm run lint` before every commit.
+- When interrupted, stop and ask for clarification.
+
 ### Constants
 
 - Default pace: 300 WPM
